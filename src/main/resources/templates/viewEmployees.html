@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Employees</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Employee Records</h1>
+
+    <h3>Total Employees :
+        <span th:text="${employees.size()}"></span>
+    </h3>
+
+    <input
+            class="searchBox"
+            type="text"
+            id="search"
+            placeholder="Search Employee..."
+            onkeyup="searchEmployee()">
+
+    <br><br>
+
+    <table id="empTable">
+
+        <tr>
+
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Actions</th>
+
+        </tr>
+
+        <tr th:each="emp : ${employees}">
+
+            <td th:text="${emp.id}"></td>
+
+            <td th:text="${emp.empName}"></td>
+
+            <td th:text="${emp.empAge}"></td>
+
+            <td th:text="${emp.empCity}"></td>
+
+            <td th:text="${emp.empState}"></td>
+
+
+            <td class="actions">
+
+                <div sec:authorize="hasAuthority('ADMIN')">
+
+                    <a th:href="@{'/edit/' + ${emp.id}}" class="editBtn">
+                        Edit
+                    </a>
+
+                    <a th:href="@{'/delete/' + ${emp.id}}"
+                       class="deleteBtn"
+                       onclick="return confirm('Delete this employee?')">
+                        Delete
+                    </a>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+    <br>
+
+    <a href="/" class="btn">
+        Back to Home
+    </a>
+
+</div>
+
+<script>
+
+    function searchEmployee(){
+
+    let input=document.getElementById("search").value.toUpperCase();
+
+    let table=document.getElementById("empTable");
+
+    let tr=table.getElementsByTagName("tr");
+
+    for(let i=1;i<tr.length;i++){
+
+    let td=tr[i].getElementsByTagName("td")[1];
+
+    if(td){
+
+    let txt=td.textContent;
+
+    tr[i].style.display=txt.toUpperCase().indexOf(input)>-1?"":"none";
+
+    }
+
+    }
+
+    }
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Employee</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Edit Employee</h1>
+
+    <form th:action="@{/updateEmployee}" th:object="${employee}" method="post">
+
+        <!-- Hidden ID -->
+        <input type="hidden" th:field="*{id}">
+
+        <input type="text" th:field="*{empName}" placeholder="Employee Name" required>
+
+        <input type="number" th:field="*{empAge}" placeholder="Age" required>
+
+        <input type="text" th:field="*{empCity}" placeholder="City" required>
+
+        <input type="text" th:field="*{empState}" placeholder="State" required>
+
+        <input type="password" th:field="*{empPassword}" placeholder="Password" required>
+
+        <button type="submit" class="btn">
+            Update Employee
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/viewEmployees" class="btn">
+        Back
+    </a>
+
+</div>
+
+</body>
+</html>

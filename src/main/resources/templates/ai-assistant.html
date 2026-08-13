@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI HR Assistant</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI HR Assistant</h1>
+
+    <p>Ask anything related to employees, HR or recruitment.</p>
+
+    <form th:action="@{/ai-assistant}" method="post">
+
+        <input
+                type="text"
+                name="question"
+                placeholder="Ask Gemini something..."
+                required>
+
+        <button type="submit">
+            Ask AI
+        </button>
+
+    </form>
+
+    <div th:if="${response}">
+
+        <h2>AI Response</h2>
+
+        <div class="ai-response" th:text="${response}"></div>
+
+    </div>
+
+    <br>
+
+    <a href="/" class="btn">
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

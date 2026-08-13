@@ -1,0 +1,318 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(rgba(20,25,45,.65),rgba(20,25,45,.65)),
+    url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600");
+
+    background-size:cover;
+    background-position:center;
+}
+.container{
+    width: 90%;
+    max-width: 850px;
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+h1{
+    color:#333;
+    margin-bottom:15px;
+    font-size:46px;
+}
+
+.subtitle{
+    color:#666;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:warp;
+}
+
+.btn{
+
+    width:220px;
+
+    padding:15px;
+
+    text-align:center;
+
+    background:#4f46e5;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-size:18px;
+
+    transition:0.3s;
+
+}
+
+.btn:hover{
+
+    background:#372bb5;
+
+    transform:translateY(-3px);
+
+}
+
+
+
+form{
+    width:100%;
+    max-width:500px;
+    margin:30px auto;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+select{
+
+    width:100%;
+
+    padding:14px;
+
+    font-size:16px;
+
+    border-radius:8px;
+
+    border:1px solid #ccc;
+
+    margin-top:10px;
+
+    margin-bottom:10px;
+
+}
+
+button{
+    background:#4f46e5;
+    color:white;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:17px;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#372bb5;
+}
+
+
+
+.table-container{
+    width:100%;
+    overflow-x:auto;
+    margin-top:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#4f46e5;
+    color:white;
+    padding:15px;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f7f7f7;
+}
+
+tr:hover{
+    background:#ececec;
+}
+
+.actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+.editBtn{
+    background:#28a745;
+    color:white;
+    padding:8px 18px;
+    text-decoration:none;
+    border-radius:6px;
+    transition:0.3s;
+}
+
+.editBtn:hover{
+    background:#1e7e34;
+}
+
+.deleteBtn{
+    background:#dc3545;
+    color:white;
+    padding:8px 18px;
+    text-decoration:none;
+    border-radius:6px;
+    transition:0.3s;
+}
+
+.deleteBtn:hover{
+    background:#b52a37;
+}
+
+
+
+.searchBox{
+    width:100%;
+    max-width:450px;
+    margin:20px auto;
+}
+
+
+
+.back-btn{
+    margin-top:25px;
+}
+
+
+
+@media(max-width:768px){
+
+    .container{
+        padding:25px;
+    }
+
+    h1{
+        font-size:clamp(32px,4vw,52px);
+    }
+
+    .buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .btn{
+        width:220px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    th,td{
+        padding:10px;
+        font-size:14px;
+    }
+ }
+.home-container{
+
+    max-width:700px;
+
+}
+
+.dashboard-card{
+
+    margin:35px auto;
+
+    background:#4f46e5;
+
+    color:white;
+
+    padding:35px;
+
+    border-radius:15px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+
+}
+
+.dashboard-card h2{
+
+    margin-bottom:15px;
+
+    font-size:28px;
+
+}
+
+.count{
+
+    font-size:60px;
+
+    font-weight:bold;
+
+}
+
+footer{
+
+    margin-top:35px;
+
+    color:#777;
+
+    font-size:15px;
+
+}
+.logo{
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    color:#4f46e5;
+    margin-bottom:20px;
+}
+
+.error{
+    color:red;
+    text-align:center;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+.ai-response {
+    margin-top: 20px;
+    padding: 25px;
+    background: #f8f9ff;
+    border-radius: 12px;
+    text-align: left;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    font-size: 16px;
+}

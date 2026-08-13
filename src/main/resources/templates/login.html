@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Login</title>
+
+    <link rel="stylesheet" th:href="@{/style.css}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        Employee Management System
+    </div>
+    <h1>Welcome Back!</h1>
+
+    <form action="/login" method="post">
+
+        <input type="text" name="username" placeholder="Username">
+
+        <input type="password" name="password" placeholder="Password">
+
+        <button class="btn">Login</button>
+
+    </form>
+
+    <br>
+
+    <a href="/register" class="btn">Create Account</a>
+
+</div>
+
+</body>
+</html>
