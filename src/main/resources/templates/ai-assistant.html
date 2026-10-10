@@ -1,50 +1,110 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>AI HR Assistant</title>
-
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI HR Assistant - Workforce Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gradient-to-br from-slate-900 via-[#1a1a2e] to-black min-h-screen text-gray-200 font-sans flex overflow-hidden">
 
-<body>
-
-<div class="container">
-
-    <h1>AI HR Assistant</h1>
-
-    <p>Ask anything related to employees, HR or recruitment.</p>
-
-    <form th:action="@{/ai-assistant}" method="post">
-
-        <input
-                type="text"
-                name="question"
-                placeholder="Ask Gemini something..."
-                required>
-
-        <button type="submit">
-            Ask AI
-        </button>
-
-    </form>
-
-    <div th:if="${response}">
-
-        <h2>AI Response</h2>
-
-        <div class="ai-response" th:text="${response}"></div>
-
+<!-- Glassmorphism Sidebar -->
+<aside class="w-64 flex flex-col m-4 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl p-6 hidden md:flex z-20">
+    <div class="mb-10">
+        <h1 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+            AI Workforce
+        </h1>
+        <p class="text-xs text-gray-400 mt-1 tracking-wider uppercase">Management Platform</p>
     </div>
 
-    <br>
+    <nav class="flex-1 space-y-3">
+        <a href="/" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-gray-300 hover:text-white transition-all">
+            Dashboard
+        </a>
+        <a href="/viewEmployees" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-gray-300 hover:text-white transition-all">
+            View Employees
+        </a>
+        <a sec:authorize="hasAuthority('ADMIN')" href="/add" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10 text-gray-300 hover:text-white transition-all">
+            Add Employee
+        </a>
 
-    <a href="/" class="btn">
-        Back to Dashboard
-    </a>
+        <!-- Active State on AI Assistant -->
+        <div class="pt-6 mt-6 border-t border-white/10">
+            <a href="/ai-assistant" class="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600/30 to-blue-600/30 text-purple-200 border border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.2)] transition-all font-medium">
+                🤖 AI HR Assistant
+            </a>
+        </div>
+    </nav>
+</aside>
 
-</div>
+<!-- Main Content Workspace -->
+<main class="flex-1 p-4 md:p-8 flex flex-col relative h-screen overflow-y-auto">
+
+    <!-- Background Decorative Glow -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <header class="mb-12 text-center mt-8 relative z-10">
+        <h2 class="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-300 to-blue-400 tracking-wide mb-4">
+            How can I help you today?
+        </h2>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+            Ask Gemini to summarize employee data, generate HR policies, or draft recruitment emails.
+        </p>
+    </header>
+
+    <!-- AI Prompt Box -->
+    <div class="w-full max-w-4xl mx-auto relative z-10 mb-10">
+        <form th:action="@{/ai-assistant}" method="post" class="relative group">
+            <!-- Glowing border effect on hover/focus -->
+            <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+
+            <div class="relative flex items-center bg-[#0f111a] border border-white/10 rounded-2xl shadow-2xl">
+                <div class="pl-6 text-2xl">✨</div>
+                <input type="text" name="question" placeholder="Ask Gemini something..." required autocomplete="off"
+                       class="w-full bg-transparent pl-4 pr-32 py-6 text-gray-200 text-lg placeholder-gray-500 focus:outline-none focus:ring-0">
+
+                <button type="submit"
+                        class="absolute right-3 px-6 py-3.5 bg-white text-black hover:bg-gray-200 rounded-xl font-bold transition-all flex items-center gap-2">
+                    Ask AI
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Pre-search Suggestions (Only shows if there is NO response yet) -->
+    <div th:unless="${response}" class="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
+        <div class="bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors cursor-default">
+            <div class="text-purple-400 mb-2">📊 Data Query</div>
+            <p class="text-sm text-gray-400">"Who are the top performing employees in the engineering department?"</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors cursor-default">
+            <div class="text-blue-400 mb-2">📝 HR Policy</div>
+            <p class="text-sm text-gray-400">"Draft a professional email announcing the new remote work guidelines."</p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-xl p-5 hover:bg-white/10 transition-colors cursor-default">
+            <div class="text-fuchsia-400 mb-2">🤝 Recruitment</div>
+            <p class="text-sm text-gray-400">"Generate a job description for a Senior Java Developer."</p>
+        </div>
+    </div>
+
+    <!-- AI Response Card (Only shows when response is returned) -->
+    <div th:if="${response}" class="w-full max-w-4xl mx-auto relative z-10 pb-12">
+        <div class="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-purple-500/30 rounded-3xl p-8 shadow-[0_0_40px_rgba(168,85,247,0.15)] relative overflow-hidden">
+
+            <h3 class="flex items-center gap-3 text-xl font-semibold text-white mb-6 border-b border-white/10 pb-4">
+                <div class="p-2 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg shadow-lg">🤖</div>
+                AI Insight
+            </h3>
+
+            <!-- whitespace-pre-wrap ensures any formatting/line-breaks Gemini sends are preserved -->
+            <div class="text-gray-200 leading-relaxed text-lg whitespace-pre-wrap font-light" th:text="${response}">
+            </div>
+
+        </div>
+    </div>
+
+</main>
 
 </body>
 </html>

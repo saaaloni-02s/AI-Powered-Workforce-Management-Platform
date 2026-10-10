@@ -1,12 +1,9 @@
 package com.example.Main.service;
 
-
 import com.example.Main.entity.Employee;
 import com.example.Main.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 
 import java.util.List;
 
@@ -23,21 +20,26 @@ public class EmployeeService {
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
+
+    // --- NEW METHOD ADDED HERE ---
+    public long countDistinctCities() {
+        return employeeRepository.countDistinctCities();
+    }
+    // -----------------------------
+
     public Employee getEmployeeById(int id) {
         return employeeRepository.findById(id).orElse(null);
     }
+
     public String deleteEmployee(int id) {
-
         employeeRepository.deleteById(id);
-
         return "Employee Deleted Successfully";
     }
-    public Employee updateEmployee(int id, Employee employee) {
 
+    public Employee updateEmployee(int id, Employee employee) {
         Employee emp = employeeRepository.findById(id).orElse(null);
 
         if(emp != null){
-
             emp.setEmpName(employee.getEmpName());
             emp.setEmpAge(employee.getEmpAge());
             emp.setEmpCity(employee.getEmpCity());
@@ -49,5 +51,4 @@ public class EmployeeService {
 
         return null;
     }
-
 }

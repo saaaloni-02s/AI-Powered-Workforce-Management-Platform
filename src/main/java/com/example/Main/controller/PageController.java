@@ -21,6 +21,9 @@ public class PageController {
 
         model.addAttribute("username", authentication.getName());
 
+        // Fetch the distinct city count and send it to the dashboard
+        model.addAttribute("totalLocations", employeeService.countDistinctCities());
+
         return "index";
     }
 
