@@ -38,4 +38,4 @@ build/
 .env
 
 # Secrets / local configuration
-application.properties
+!src/main/resources/application.properties
